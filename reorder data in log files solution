@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+vector<string> Solution::reorderLogs(vector<string> &A) {
+    vector<pair<string,string>> let;
+    vector<pair<string,string>> dig;
+    for(auto i:A){
+        string h="";
+        string c="";
+        bool flag=false;
+        for(int j=0;j<i.size();j++)
+        {
+            if(i[j]=='-' && flag==false){
+                flag=true;
+                continue;
+            }
+            if(flag==false) h+=i[j];
+            else c+=i[j];
+        }
+        if(c[0]>='a' && c[0]<='z') let.push_back({c,h});
+        else dig.push_back({c,h});
+    }
+    sort(let.begin(),let.end());
+    vector<string> ans;
+    for(auto i:let){
+        ans.push_back(i.second+'-'+i.first);
+    }
+    for(auto i:dig){
+        ans.push_back(i.second+'-'+i.first);
+    }
+    return ans;
+}
