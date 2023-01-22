@@ -1,0 +1,23 @@
+class Solution
+{
+    public:
+    int select(int arr[], int i,int n)
+    {
+        int min,j;
+        min=i;
+        for(j=i+1;j<n;j++){
+                if(arr[j]<arr[min])
+                 min=j;
+            }
+        return min;
+    }
+     
+    void selectionSort(int arr[], int n)
+    {
+        int min_index;
+        for(int i=0;i<n-1;i++){
+           min_index=select(arr,i,n);
+           if(i != min_index) swap(arr[i],arr[min_index]);
+       }
+    }
+};
