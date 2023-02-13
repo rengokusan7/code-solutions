@@ -1,0 +1,11 @@
+int Solution::firstMissingPositive(vector<int> &A) {
+    sort(A.begin(),A.end());
+    int j=1,i;
+    for(i=0;i<A.size();i++){
+       if(A[i]==j){
+           j++;
+       } 
+       else if(A[i]>0) break;
+    }
+    return j;
+}
