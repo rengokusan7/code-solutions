@@ -1,0 +1,34 @@
+/**
+ * Definition for an interval.
+ * struct Interval {
+ *     int start;
+ *     int end;
+ *     Interval() : start(0), end(0) {}
+ *     Interval(int s, int e) : start(s), end(e) {}
+ * };
+ */
+vector<Interval> Solution::insert(vector<Interval> &intervals, Interval newInterval) {
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+    if(newInterval.start>newInterval.end){
+        swap(newInterval.start,newInterval.end);
+    }
+    int i=0,a=newInterval.start,b=newInterval.end;
+    vector<Interval> res;
+    for(i=0;i<intervals.size();i++){
+        if(newInterval.start>intervals[i].end){
+            res.push_back(intervals[i]);
+        }
+        else if(newInterval.end<intervals[i].start){
+            res.push_back(newInterval);
+            newInterval=intervals[i];
+        }
+        else if(newInterval.start<=intervals[i].end || newInterval.end>=intervals[i].start){
+            newInterval=Interval(min(newInterval.start,intervals[i].start),max(newInterval.end,intervals[i].end));
+        }
+    }
+    res.push_back(newInterval);
+    return res;
+}
